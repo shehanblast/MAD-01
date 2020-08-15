@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MAD-01</string>
+    <string name="Header">Event Planner</string>
+    <string name="Event_name">Birthday Party</string>
+    <string name="Time_left_value">28:14:06:05</string>
+    <string name="Time_left">Time Left</string>
+    <string name="Task">Task List</string>
+    <string name="gue">Guests</string>
+    <string name="bud">Budget</string>
+    <string name="ven">Vendors</string>
+    <string name="dash">Dashboard</string>
+</resources>
