@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MAD Project</string>
+    <string name="name_Add">Name *</string>
+    <string name="date_Add">Date *</string>
+    <string name="time_Add">Time *</string>
+    <string name="details_of_Task">Add Task Details*</string>
+    <string name="task_listname">Task List</string>
+    <string name="search_for_task">Search Task</string>
+    <string name="edit_Your_task">Edit Your Task</string>
+    <string name="first_task">ITP PROJECT SUBMITHION</string>
+    <string name="Second_task">MAD PROJECT FINISH</string>
+    <string name="Thered_task">FINAL EXAM PEPPER</string>
+</resources>
