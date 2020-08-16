@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Mad</string>
+    <string name="TextAppearance.appCompat.Large" />
+    <string name="Msg2">id</string>
+    <string name="Msg3">name</string>
+    <string name="Msg4">Gender</string>
+    <string name="Msg5">Add Guest</string>
+    <string name="Msg6">Add Contact Details</string>
+    <string name="Msg7">TelNo</string>
+    <string name="Msg8">Email</string>
+    <string name="Msg9">Address</string>
+    <string name="mainname">Geenadi</string>
+    <string name="mainname2">Sathsarani</string>
+    <string name="Welcome">Welcome !</string>
+    <string name="EventName">Event Name</string>
+    <string name="addEventName">Enter Event</string>
+    <string name="EventDate">Event Date</string>
+    <string name="addEventDate">add Date</string>
+
+
+</resources>
