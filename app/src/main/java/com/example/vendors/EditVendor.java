@@ -1,18 +1,13 @@
 package com.example.vendors;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class EditVendor extends AppCompatActivity {
     public Toolbar toolbar;
@@ -41,7 +36,7 @@ public class EditVendor extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.check){
+        if(id == R.id.check1){
             Intent intent = new Intent(EditVendor.this, BackToMain.class);
             startActivity(intent);
 

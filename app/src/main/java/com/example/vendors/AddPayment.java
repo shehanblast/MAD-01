@@ -1,6 +1,5 @@
 package com.example.vendors;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -8,10 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class AddPayment extends AppCompatActivity {
@@ -46,7 +41,7 @@ public class AddPayment extends AppCompatActivity {
 
         int id = item.getItemId();
 
-        if(id == R.id.check){
+        if(id == R.id.check1){
             Intent intent = new Intent(AddPayment.this, EditPayment.class);
             startActivity(intent);
 

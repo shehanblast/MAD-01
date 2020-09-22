@@ -12,7 +12,6 @@
         android:id="@+id/toolbar"
         layout="@layout/appbar" />
 
-    button
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton5"
