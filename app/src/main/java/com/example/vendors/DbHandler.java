@@ -2,14 +2,19 @@ package com.example.vendors;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class DbHandler extends SQLiteOpenHelper {
 
-    private static final int VERSION = 1;
+    private static final int VERSION = 3;
     private static final String DB_NAME = "vendor";
     private static final String TABLE_NAME = "vendor";
 
@@ -22,6 +27,8 @@ public class DbHandler extends SQLiteOpenHelper {
     private static final String NUMBER = "number";
     private static final String EMAIL = "email";
     private static final String ADDRESS = "address";
+    private static final String P_AMOUNT = "p_amount";
+    private static final String P_DATE = "p_date";
 
 
     public DbHandler(@Nullable Context context) {
@@ -39,7 +46,9 @@ public class DbHandler extends SQLiteOpenHelper {
                 + ESTIMATEDAMOUNT + " TEXT, "
                 + NUMBER + " TEXT, "
                 + EMAIL + " TEXT, "
-                + ADDRESS + " TEXT " +
+                + ADDRESS + " TEXT, "
+                + P_AMOUNT + " TEXT, "
+                + P_DATE + " TEXT "+
                 ");";
 
 
@@ -72,6 +81,8 @@ public class DbHandler extends SQLiteOpenHelper {
         contentValues.put(NUMBER, vendor.getNumber());
         contentValues.put(EMAIL, vendor.getEmail());
         contentValues.put(ADDRESS, vendor.getAddress());
+        contentValues.put(P_AMOUNT, vendor.getP_amount());
+        contentValues.put(P_DATE, vendor.getP_date());
 
 
         //save to table
@@ -79,4 +90,112 @@ public class DbHandler extends SQLiteOpenHelper {
        sqLiteDatabase.close();
 
     }
+
+    //count the guest table records
+    public int countVendor(){
+        SQLiteDatabase db=getReadableDatabase();
+        String query="SELECT * FROM "+ TABLE_NAME;
+
+        Cursor cursor=db.rawQuery(query,null);
+        return cursor.getCount();
+
+    }
+
+    //Get all guests into the list
+    public List<Vendor> getAllVendors(){
+
+        List<Vendor> vendors =new ArrayList();
+        SQLiteDatabase db=getReadableDatabase();
+        String query="SELECT * FROM "+TABLE_NAME;
+
+        Cursor cursor=db.rawQuery(query,null);
+
+        //check the avalability of the data
+
+        //this method returns if the cursor is empty
+        if(cursor.moveToFirst()){
+            do {
+                //create a new Vendor object
+                Vendor vendor = new Vendor();
+
+                vendor.setId(cursor.getInt(0));
+                vendor.setName(cursor.getString(1));
+                vendor.setCategory(cursor.getString(2));
+                vendor.setNote(cursor.getString(3));
+                vendor.setEstimated_amount(cursor.getString(4));
+                vendor.setNumber(cursor.getString(5));
+                vendor.setEmail(cursor.getString(6));
+                vendor.setAddress(cursor.getString(7));
+                vendor.setP_amount(cursor.getString(8));
+                vendor.setP_date(cursor.getString(9));
+
+                //vendors=[obj,objs,]
+                vendors.add(vendor);
+            }while  (cursor.moveToNext());
+        }
+        return vendors;
+    }
+
+
+    //delete the guest from the database
+    public void deleteVendor(int id){
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_NAME,"id =?",new String[]{String.valueOf(id)});
+
+        //close the database connection
+        db.close();
+    }
+
+    //get the single guest
+    public Vendor getSingleVendor(int id){
+        SQLiteDatabase db=getWritableDatabase();
+        Cursor cursor= db.query(TABLE_NAME,new String[]{ID,NAME,CATEGORY,NOTE,ESTIMATEDAMOUNT,NUMBER,EMAIL,ADDRESS,P_AMOUNT,P_DATE},ID+ "= ?",new String[]{String.valueOf(id)},null,null,null);
+
+        Vendor vendor;
+
+        if(cursor != null){
+            cursor.moveToFirst();
+            vendor =new Vendor(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getString(7),
+                    cursor.getString(8),
+                    cursor.getString(9)
+            );
+
+            return vendor;
+
+        }
+        return null;
+    }
+    //update the vendor
+    public int updateSingleVendor(Vendor vendor){
+        SQLiteDatabase db=getWritableDatabase();
+
+        ContentValues contentValues =new ContentValues();//to struchure the data
+
+        contentValues.put(NAME,vendor.getName());
+        contentValues.put(CATEGORY,vendor.getCategory());
+        contentValues.put(NOTE,vendor.getNote());
+        contentValues.put(ESTIMATEDAMOUNT,vendor.getEstimated_amount());
+        contentValues.put(NUMBER,vendor.getNumber());
+        contentValues.put(EMAIL,vendor.getEmail());
+        contentValues.put(ADDRESS,vendor.getAddress());
+        contentValues.put(P_AMOUNT,vendor.getP_amount());
+        contentValues.put(P_DATE,vendor.getP_date());
+
+
+        int status = db.update(TABLE_NAME,contentValues,ID +" =?",new String[]{String.valueOf(vendor.getId())});
+        db.close();
+        return status;
+
+
+    }
+
+
 }

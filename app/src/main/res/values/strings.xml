@@ -10,4 +10,6 @@
     <string name="Msg8">Email</string>
     <string name="Msg9">Address</string>
     <string name="Msg10">Payments</string>
+    <string name="Msg11">Paid Amount</string>
+    <string name="Msg12">Paid Date</string>
 </resources>

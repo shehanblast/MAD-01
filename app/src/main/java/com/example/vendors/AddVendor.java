@@ -19,7 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class AddVendor extends AppCompatActivity {
     public Toolbar toolbar;
     public FloatingActionButton floatingActionButton;
-    private EditText name, category, note, estimated_amount, number, email, address;
+    private EditText name, category, note, estimated_amount, number, email, address, p_amount, p_date;
     private Button add;
     private DbHandler dbHandler;
     private Context context;
@@ -47,20 +47,22 @@ public class AddVendor extends AppCompatActivity {
         });
 
 
-        name = findViewById(R.id.editTextTextPersonName3);
+       name = findViewById(R.id.editTextTextPersonName3);
         category = findViewById(R.id.editTextTextPersonName2);
         note = findViewById(R.id.editTextTextPersonName);
         estimated_amount = findViewById(R.id.editTextTextPersonName6);
         number = findViewById(R.id.editTextTextPersonName4);
         email = findViewById(R.id.editTextTextEmailAddress);
         address = findViewById(R.id.editTextTextPersonName7);
-        add = findViewById(R.id.btnadd);
+        p_amount = findViewById(R.id.editTextTextPersonName8);
+        p_date = findViewById(R.id.editTextTextPersonName9);
+        floatingActionButton = findViewById(R.id.button2);
         context = this;
 
         dbHandler = new DbHandler(context);
 
 
-        add.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String vname = name.getText().toString();
@@ -70,12 +72,15 @@ public class AddVendor extends AppCompatActivity {
                 String vnumber = number.getText().toString();
                 String vemail = email.getText().toString();
                 String vaddress = address.getText().toString();
+                String pamount = p_amount.getText().toString();
+                String pdate = p_date.getText().toString();
 
+                Vendor vendor = new Vendor(vname, vcategory, vnote, vestimated_amount, vnumber, vemail, vaddress, pamount, pdate);
+               dbHandler.addVendor(vendor);
 
-                Vendor vendor = new Vendor(vname, vcategory, vnote, vestimated_amount, vnumber, vemail, vaddress);
-                dbHandler.addVendor(vendor);
+               startActivity(new Intent(context,MainActivity.class));
 
-            }
+           }
         });
 
     }

@@ -3,17 +3,23 @@ package com.example.vendors;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 public class AddPayment extends AppCompatActivity {
     public Toolbar toolbar;
+    private EditText p_name, p_amount, p_date;
+    private Button addp;
+    private DbHandler dbHandler;
+    private Context context;
 
-
-    ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +32,35 @@ public class AddPayment extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
 
 
+       /* p_name = findViewById(R.id.pname);
+        p_amount = findViewById(R.id.pamount);
+        p_date = findViewById(R.id.editTextDate);
+        addp = findViewById(R.id.buttonp);
+        context = this;
+
+        dbHandler = new DbHandler(context);*/
+
+
+      /*  addp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                String pname = p_name.getText().toString();
+                String pamount = p_amount.getText().toString();
+                String pdate = p_date.getText().toString();
+
+
+               Vendor vendor = new Vendor("", "", "", "", "","", "",pname, pamount, pdate);
+               dbHandler.addVendor(vendor);
+
+
+
+            }
+        });*/
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
