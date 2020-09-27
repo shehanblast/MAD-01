@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
         guestAdapter gAdapter=new guestAdapter(context,R.layout.single_guest,Guest);
         todoguest.setAdapter(gAdapter);
 
+        //get the count of guests
+        int countguest=dbHandler.countGuest();
+
+        count.setText("You have "+countguest+" guests");
 
 
 
