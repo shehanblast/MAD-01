@@ -24,7 +24,12 @@ public class EditPayment extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu2,menu);
+        return true;
 
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
